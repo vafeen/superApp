@@ -1,13 +1,13 @@
 package ru.vafeen.superapp
 
 import android.app.Application
-import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import ru.vafeen.api.TestProvider
 import ru.vafeen.common.navigation.FeatureNavigation
-import ru.vafeen.superapp.app.App
 import ru.vafeen.superapp.app.AppComponent
 
 @Singleton
@@ -16,14 +16,43 @@ internal class MainNavigator @Inject constructor(
     private val testProvider: TestProvider,
     private val appComponent: AppComponent
 ) : AndroidViewModel(application), FeatureNavigation {
-    override fun openFeature(feature: FeatureNavigation.Feature) {
-        when (feature) {
-            FeatureNavigation.Feature.Test -> {
+    private val queue = ArrayDeque<Fragment>()
+    private var fragmentManager: FragmentManager? = null
 
-//                val testFragment = testProvider.getTestFragment(appComponent)
-                Log.e("test", "openFeature$appComponent")
-                Log.e("test", "openFeature${getApplication<App>().appComponent}")
+    @Synchronized
+    fun init(fragmentManager: FragmentManager) {
+        this.fragmentManager = fragmentManager
+        while (queue.isNotEmpty()) {
+            queue.removeFirstOrNull()?.let { fragment ->
+                fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
             }
+        }
+    }
+
+
+    fun shutdown() {
+        fragmentManager = null
+    }
+
+    @Synchronized
+    override fun openFeature(feature: FeatureNavigation.Feature) {
+        val fragment = when (feature) {
+            FeatureNavigation.Feature.Test ->
+                testProvider.getTestFragment(appComponent)
+        }
+        if (fragmentManager != null) {
+            fragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.main, fragment)
+                ?.addToBackStack(null)
+                ?.commit()
+        } else {
+            queue.addLast(fragment)
         }
     }
 

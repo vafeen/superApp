@@ -7,6 +7,6 @@ import ru.vafeen.api.TestProvider
 
 internal class TestProviderImpl @Inject constructor() : TestProvider {
     override fun getTestFragment(testDependencies: TestDependencies): Fragment {
-        return TODO()
+        return TestFragment()
     }
 }
