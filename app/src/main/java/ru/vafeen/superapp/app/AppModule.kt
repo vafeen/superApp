@@ -1,18 +1,16 @@
 package ru.vafeen.superapp.app
 
-import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
-import dagger.multibindings.IntoMap
-import ru.vafeen.common.ViewModelKey
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import ru.vafeen.common.navigation.Navigator
 import ru.vafeen.superapp.MainNavigator
-import ru.vafeen.test_screen_impl.TestFeatureModule
 
-@Module(includes = [TestFeatureModule::class])
+@Module
+@InstallIn(SingletonComponent::class)
 internal interface AppModule {
     @Binds
-    @IntoMap
-    @ViewModelKey(MainNavigator::class)
-    fun bindsNavigator(mainNavigator: MainNavigator): ViewModel
+    fun bindsNavigator(mainNavigator: MainNavigator): Navigator
 
 }

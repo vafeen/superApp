@@ -1,7 +1,7 @@
 package ru.vafeen.superapp.app
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-internal class App : Application() {
-    val appComponent: AppComponent = DaggerAppComponent.factory().create(this)
-}
+@HiltAndroidApp
+internal class App : Application()

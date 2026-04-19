@@ -37,7 +37,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
+    api("androidx.fragment:fragment-ktx:1.8.9")
     // dagger2
     implementation(libs.dagger)
 }
