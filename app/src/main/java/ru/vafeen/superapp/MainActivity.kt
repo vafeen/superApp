@@ -22,8 +22,8 @@ internal class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as App).appComponent.inject(this)
-        navigator.init(supportFragmentManager)
         super.onCreate(savedInstanceState)
+        navigator.init(supportFragmentManager)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)

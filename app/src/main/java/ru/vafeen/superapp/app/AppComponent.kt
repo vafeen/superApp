@@ -4,8 +4,8 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import jakarta.inject.Singleton
-import ru.vafeen.api.TestDependencies
 import ru.vafeen.superapp.MainActivity
+import ru.vafeen.test_screen_api.TestDependencies
 
 @Singleton
 @Component(modules = [AppModule::class])

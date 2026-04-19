@@ -6,9 +6,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
-import ru.vafeen.api.TestProvider
 import ru.vafeen.common.navigation.FeatureNavigation
 import ru.vafeen.superapp.app.AppComponent
+import ru.vafeen.test_screen_api.TestProvider
 
 @Singleton
 internal class MainNavigator @Inject constructor(
