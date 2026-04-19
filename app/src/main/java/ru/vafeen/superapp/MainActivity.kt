@@ -3,27 +3,20 @@ package ru.vafeen.superapp
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import dagger.Lazy
-import jakarta.inject.Inject
-import ru.vafeen.common.ViewModelFactory
-import ru.vafeen.common.navigation.FeatureNavigation
-import ru.vafeen.superapp.app.App
+import dagger.hilt.android.AndroidEntryPoint
+import ru.vafeen.common.navigation.Feature
 
-
+@AndroidEntryPoint
 internal class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var viewModelFactory: Lazy<ViewModelFactory>
-    private val navigator: MainNavigator by lazy {
-        viewModelFactory.get().create(MainNavigator::class.java)
-    }
+    private val viewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App).appComponent.inject(this)
-        navigator.init(supportFragmentManager)
         super.onCreate(savedInstanceState)
+        viewModel.initNavigator(supportFragmentManager)
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -34,8 +27,9 @@ internal class MainActivity : AppCompatActivity() {
         }
 
         addOnBackPressedCallbackForClosingActivityOnEmptyStack()
-
-        navigator.openFeature(FeatureNavigation.Feature.Test)
+        if (savedInstanceState == null) {
+            viewModel.openFeature(Feature.Services)
+        }
     }
 
     private fun addOnBackPressedCallbackForClosingActivityOnEmptyStack() {
@@ -55,7 +49,7 @@ internal class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        navigator.shutdown()
+        viewModel.shutdownNavigator()
         super.onDestroy()
     }
 }
