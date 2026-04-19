@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.vafeen.test_screen_impl.databinding.FragmentTestBinding
 
 @AndroidEntryPoint
-internal class TestFragment : Fragment() {
+internal class TestFragment @Inject constructor() : Fragment() {
     private val viewModel: TestViewModel by viewModels()
     private var binding: FragmentTestBinding? = null
 

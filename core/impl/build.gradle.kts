@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.vafeen.common"
+    namespace = "ru.vafeen.common_impl"
     compileSdk {
         version = release(36)
     }
@@ -33,13 +33,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    api(libs.androidx.fragment.ktx)
     // hilt
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)

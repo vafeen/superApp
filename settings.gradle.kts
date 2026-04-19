@@ -22,6 +22,8 @@ dependencyResolutionManagement {
 rootProject.name = "SuperApp"
 include(":app")
 include(":core:common")
+include(":core:impl")
 include(":feature:test_screen:api")
 include(":feature:test_screen:impl")
 include(":feature:services_screen:api")
+include(":feature:services_screen:impl")

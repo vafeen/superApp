@@ -40,9 +40,12 @@ android {
 
 dependencies {
     implementation(project(":core:common"))
+    implementation(project(":core:impl"))
     implementation(project(":feature:test_screen:api"))
     implementation(project(":feature:test_screen:impl"))
     implementation(project(":feature:services_screen:api"))
+    implementation(project(":feature:services_screen:impl"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

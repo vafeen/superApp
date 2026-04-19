@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dagger.hilt.android.AndroidEntryPoint
-import ru.vafeen.common.navigation.Navigator
+import ru.vafeen.common.navigation.Feature
 
 @AndroidEntryPoint
 internal class MainActivity : AppCompatActivity() {
@@ -28,7 +28,7 @@ internal class MainActivity : AppCompatActivity() {
 
         addOnBackPressedCallbackForClosingActivityOnEmptyStack()
         if (savedInstanceState == null) {
-            viewModel.openFeature(Navigator.Feature.Test)
+            viewModel.openFeature(Feature.Services)
         }
     }
 
