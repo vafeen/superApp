@@ -39,4 +39,9 @@ internal class TestFragment @Inject constructor() : Fragment() {
             viewModel.openNew()
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

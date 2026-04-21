@@ -40,6 +40,11 @@ internal class ServicesFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     private fun FragmentServicesBinding.setupRecyclerView() {
         recycler.layoutManager = GridLayoutManager(requireContext(), 2)
         recycler.adapter = adapter
