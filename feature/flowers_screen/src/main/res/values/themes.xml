@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DefaultFlowerStyle">
+        <item name="flowerColor">#ff0000</item>
+        <item name="flowerName">default flower</item>
+    </style>
+</resources>

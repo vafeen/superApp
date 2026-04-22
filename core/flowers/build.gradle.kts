@@ -1,11 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt.android)
 }
 
 android {
-    namespace = "ru.vafeen.common"
+    namespace = "ru.vafeen.flowers"
     compileSdk {
         version = release(36)
     }
@@ -39,10 +37,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    api(libs.androidx.fragment.ktx)
-    // hilt
-    implementation(libs.dagger.hilt.android)
-    ksp(libs.dagger.hilt.compiler)
-    // viewBinding for delegate
-    implementation(libs.androidx.viewbinding)
 }

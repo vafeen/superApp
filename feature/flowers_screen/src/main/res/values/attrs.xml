@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowerView">
+        <attr name="flowerColor" format="color" />
+        <attr name="flowerName" format="string" />
+    </declare-styleable>
+
+    <attr name="FlowerStyle" format="reference" />
+</resources>
